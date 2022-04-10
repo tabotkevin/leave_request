@@ -40,6 +40,14 @@ class LeaveRequestStatus(IntEnum):
     rejected = 2
     closed = 3
 
+    @classmethod
+    def get_status_name(cls, value):
+        return {item.value: item.name for item in list(cls)}.get(value, 'open')
+
+    @classmethod
+    def get_status_value(cls, key):
+        return {item.name: item.value for item in list(cls)}.get(key, 0)
+
 
 STATUSES = tuple((item.value, item.name) for item in list(LeaveRequestStatus))
 

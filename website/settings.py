@@ -26,7 +26,7 @@ SITE_ID = 1
 SECRET_KEY = os.environ.get("SECRET_KEY", default="no-secret")
 INTERNAL_IPS = ["127.0.0.1"]
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".example.com", "vagrant"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".example.com", "vagrant", "testserver"]
 
 BASE_DOMAIN = HOSTNAME = socket.gethostname().lower()
 if "ALLOWED_HOSTS" in os.environ and os.environ["ALLOWED_HOSTS"].strip():
@@ -142,6 +142,8 @@ LOCALE_PATHS = [
 
 USE_L10N = True
 USE_TZ = True
+
+AUTH_USER_MODEL = 'leave.User'
 
 
 # Static files (CSS, JavaScript, Images)

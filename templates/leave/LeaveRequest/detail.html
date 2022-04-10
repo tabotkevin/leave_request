@@ -1,29 +1,31 @@
 {% extends "leave/base.html" %}
+{% load custom_tags %}
+
 {% block content %}
   <table>
     <tr>
       <th>Request by</th>
-      <td>{{ object.request_by.get_full_name }}</td>
+      <td>{{ object.request_by.get_full_name | default_if_none:"--" }}</td>
     </tr>
     <tr>
       <th>Start</th>
-      <td>{{ object.start }}</td>
+      <td>{{ object.start | default_if_none:"--" }}</td>
     </tr>
     <tr>
       <th>End</th>
-      <td>{{ object.end }}</td>
+      <td>{{ object.end | default_if_none:"--" }}</td>
     </tr>
     <tr>
       <th>Manager</th>
-      <td>{{ object.manager.get_full_name }}</td>
+      <td>{{ object.manager.get_full_name | default_if_none:"--" }}</td>
     </tr>
     <tr>
       <th>Status</th>
-      <td>{{ object.status }}</td>
+      <td>{{ object.status | to_str }}</td>
     </tr>
     <tr>
       <th>Review timestamp</th>
-      <td>{{ object.review_ts }}</td>
+      <td>{{ object.review_ts | default_if_none:"--" }}</td>
     </tr>
   </table>
   {% if object.manager == request.user %}

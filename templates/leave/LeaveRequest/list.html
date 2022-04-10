@@ -1,4 +1,5 @@
 {% extends 'leave/base.html' %}
+{% load custom_tags %}
 {% comment %}
 
 TODO: Make sure empty values won't show as "None"
@@ -22,13 +23,13 @@ TODO: Instead of Status number show it's name
       <tbody>
       {% for object in object_list %}
         <tr>
-          <td><a href="{% url 'leave:LeaveRequestDetail' object.pk %}">{{ object.request_ts }}</a></td>
-          <td>{{ object.request_by.get_full_name }}</td>
-          <td>{{ object.start }}</td>
-          <td>{{ object.end }}</td>
-          <td>{{ object.manager.get_full_name }}</td>
-          <td>{{ object.status}}</td>
-          <td>{{ object.review_ts }}</td>
+          <td><a href="{% url 'leave:LeaveRequestDetail' object.pk %}">{{ object.request_ts | default_if_none:"--" }}</a></td>
+          <td>{{ object.request_by.get_full_name | default_if_none:"--" }}</td>
+          <td>{{ object.start | default_if_none:"--" }}</td>
+          <td>{{ object.end | default_if_none:"--" }}</td>
+          <td>{{ object.manager.get_full_name | default_if_none:"--" }}</td>
+          <td>{{ object.status | to_str }}</td>
+          <td>{{ object.review_ts | default_if_none:"--" }}</td>
         </tr>
       {% endfor %}
       </tbody>

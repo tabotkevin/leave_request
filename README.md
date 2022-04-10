@@ -1,6 +1,23 @@
 Django Leave Request programming test task
 ==========================================
 
+
+My Solution
+-----------
+My solution to the task can be found as pull request in the `answer` branch [here](https://github.com/tabotkevin/leave_request/pull/1)
+
+### Environment setup
+If the default `Environment setup` at the bottom doesn't work you, use the following commands to setup, test and lint.
+
+ 
+    python3 -m venv venv
+    source venv/bin/activate
+    python3 -m pip install --upgrade pip
+    pip install -r requirements.txt
+    pytest
+    pylint leave
+
+
 Introduction
 ------------
 

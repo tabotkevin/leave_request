@@ -10,3 +10,4 @@ faker==4.1.1
 python-dateutil==2.8.1
 pycountry==20.7.3
 pytz==2020.1
+pylint==2.13.5

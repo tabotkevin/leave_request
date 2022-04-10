@@ -1,0 +1,66 @@
+{% extends 'leave/base.html' %}
+{% comment %}
+
+TODO: Make sure empty values won't show as "None"
+TODO: Instead of Status number show it's name
+
+{% endcomment %}
+{% block content %}
+  <div class="">
+    <table class="">
+      <thead>
+      <tr>
+        <th>Submitted</th>
+        <th>Requested by</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Manager</th>
+        <th>Status</th>
+        <th>Review timestamp</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td><a href="{% url 'leave:LeaveRequestDetail' object.pk %}">{{ object.request_ts }}</a></td>
+          <td>{{ object.request_by.get_full_name }}</td>
+          <td>{{ object.start }}</td>
+          <td>{{ object.end }}</td>
+          <td>{{ object.manager.get_full_name }}</td>
+          <td>{{ object.status}}</td>
+          <td>{{ object.review_ts }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+    {% if is_paginated %}
+      <div class="">
+        <div class="pagination-container" style="display: flex;align-items: center; flex-direction: row; margin: 1em">
+          {% if page_obj.has_previous %}
+            <span class="previous">
+                <a class="button pseudo" href="?page={{ page_obj.previous_page_number }}">
+                    Previous
+                </a>
+                </span>
+          {% endif %}
+          <ul style="display: flex; margin: 0; padding: 0">
+            {% for page in page_obj.paginator.page_range %}
+              <li style="display: flex">
+                <a class="button {% if page_obj.number != page %}pseudo{% endif %}" href="?page={{ page }}">{{ page }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          {% if page_obj.has_next %}
+            <span class="next">
+                <a class="button pseudo" href="?page={{ page_obj.next_page_number }}">
+                    Next
+                </a>
+                </span>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

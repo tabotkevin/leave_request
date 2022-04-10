@@ -1,0 +1,41 @@
+{% extends "leave/base.html" %}
+{% block content %}
+  <table>
+    <tr>
+      <th>Request by</th>
+      <td>{{ object.request_by.get_full_name }}</td>
+    </tr>
+    <tr>
+      <th>Start</th>
+      <td>{{ object.start }}</td>
+    </tr>
+    <tr>
+      <th>End</th>
+      <td>{{ object.end }}</td>
+    </tr>
+    <tr>
+      <th>Manager</th>
+      <td>{{ object.manager.get_full_name }}</td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td>{{ object.status }}</td>
+    </tr>
+    <tr>
+      <th>Review timestamp</th>
+      <td>{{ object.review_ts }}</td>
+    </tr>
+  </table>
+  {% if object.manager == request.user %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <button type=submit name="status" value="accepted">Accept</button>
+      <button type=submit name="status" value="rejected">Reject</button>
+    </form>
+  {% endif %}
+  {% if object.request_by == request.user %}
+    <p>
+      <a class="button" href="{% url "leave:LeaveRequestUpdate" object.pk %}">Update</a>
+    </p>
+  {% endif %}
+{% endblock %}

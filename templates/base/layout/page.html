@@ -1,0 +1,39 @@
+{% extends "base/layout/body.html" %}
+{% block body %}
+  <nav class="">
+    <a href="/" class="brand">
+      <span>Leave request management</span>
+    </a>
+
+    <!-- responsive-->
+    <input id="bmenub" type="checkbox" class="show">
+    <label for="bmenub" class="burger pseudo button">menu</label>
+
+    <div class="menu">
+      <a href="{% url 'admin:index' %}" class="pseudo button">Admin</a>
+      <a href="{% url 'leave:LeaveRequestList' %}" class="pseudo button">Request list</a>
+      <a href="{% url 'leave:LeaveRequestCreate' %}" class="button">Create request</a>
+    </div>
+  </nav>
+  <section class="content" style="margin-top: 4em">
+    <section id="alerts">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissable ">
+            <div>
+              {{ message|safe }}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </section>
+    {% block content %}
+      <h3>Your templates need work</h3>
+      <p>You are looking at a sample text in your app template `templates/base.html`</p>
+    {% endblock %}
+  </section>
+  <footer>
+    <p>You are logged in as: {{ request.user.get_full_name }}</p>
+  </footer>
+{% endblock %}
+

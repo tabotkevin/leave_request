@@ -1,0 +1,171 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28 15:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: leave/apps.py:18
+msgid "Django Leave Basic Test"
+msgstr ""
+
+#: leave/models.py:31
+msgid "open"
+msgstr ""
+
+#: leave/models.py:32
+msgid "accepted"
+msgstr ""
+
+#: leave/models.py:33
+msgid "rejected"
+msgstr ""
+
+#: leave/models.py:34
+msgid "closed"
+msgstr ""
+
+#: leave/models.py:58
+msgid "start"
+msgstr ""
+
+#: leave/models.py:59
+msgid "end"
+msgstr ""
+
+#: leave/models.py:60
+msgid "request by"
+msgstr ""
+
+#: leave/models.py:61
+msgid "request timestamp"
+msgstr ""
+
+#: leave/models.py:62
+msgid "manager"
+msgstr ""
+
+#: leave/models.py:63
+msgid "status"
+msgstr ""
+
+#: leave/models.py:64
+msgid "review timestamp"
+msgstr ""
+
+#: leave/models.py:65
+msgid "category"
+msgstr ""
+
+#: leave/models.py:68
+msgid "leave requests"
+msgstr ""
+
+#: leave/models.py:69
+msgid "leave request"
+msgstr ""
+
+#: leave/models.py:93
+#, python-brace-format
+msgid "{first_name} requested a leave"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:6
+msgid "Request by"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:10
+#: leave/templates/leave/LeaveRequest/list.html:21
+msgid "Start"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:14
+#: leave/templates/leave/LeaveRequest/list.html:22
+msgid "End"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:18
+#: leave/templates/leave/LeaveRequest/list.html:24
+msgid "Manager"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:22
+#: leave/templates/leave/LeaveRequest/list.html:25
+msgid "Status"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:29
+msgid "Accept"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:30
+msgid "Reject"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/detail.html:35
+msgid "Update"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:19
+msgid "Submitted"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:20
+msgid "Requested by"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:23
+msgid "Category"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:26
+msgid "Review timestamp"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:52
+msgid "Previous"
+msgstr ""
+
+#: leave/templates/leave/LeaveRequest/list.html:66
+msgid "Next"
+msgstr ""
+
+#: leave/templates/leave/email/request.txt:2
+#, python-format
+msgid ""
+"\n"
+"Dear %(manager_first_name)s,\n"
+"\n"
+"Your subordinate %(request_by_first_name)s has requested a leave between "
+"%(start)s and %(end)s.\n"
+"\n"
+"Please accept or reject this request using a link:\n"
+msgstr ""
+
+#: leave/views.py:50
+msgid "You don't have permission to review leave request from {}"
+msgstr ""
+
+#: leave/views.py:54
+msgid "Please set correct status: {}"
+msgstr ""
+
+#: leave/views.py:60
+msgid "Leave request from {} was accepted"
+msgstr ""
+
+#: leave/views.py:67
+msgid "Leave request from {} was rejected"
+msgstr ""

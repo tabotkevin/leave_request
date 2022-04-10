@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from enum import IntEnum
 
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -25,8 +26,11 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
     def __str__(self):
-        return self.username
+        return f"{self.username}"
 
     class Meta:
         default_related_name = "org_user"
@@ -68,3 +72,10 @@ class LeaveRequest(models.Model):
     )
     review_ts = models.DateTimeField(null=True, blank=True)
 
+    def clean(self):
+        if (hasattr(self, 'request_by') and
+                hasattr(self, 'manager') and
+                self.request_by.manager != self.manager):
+            message = 'Manager for this request must be user\'s manager '
+            raise ValidationError(message)
+        return super().clean()

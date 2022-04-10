@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=too-many-ancestors
 
-from django.core.exceptions import ValidationError
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect
 from django.urls import reverse
@@ -24,23 +22,16 @@ class LeaveRequestList(LoginRequiredMixin, ListView):
     paginate_by = 20
     ordering = ['-id']
 
-    def get_context_data(self, **kwargs):
-        context = super(LeaveRequestList, self).get_context_data(**kwargs)
-        leave_requests = context['object_list']
-        context['statuses'] = [{'request_by': r.request_by.username, 'status': LeaveRequestStatus.get_status_name(r.status)} for r in leave_requests]
-        return context
-
-
 
 class LeaveRequestCreate(LoginRequiredMixin, CreateView):
     template_name = "leave/LeaveRequest/form.html"
     model = LeaveRequest
-    form_class = CreateLeaveRequestForm 
+    form_class = CreateLeaveRequestForm
     success_message = _('Leave Request created.')
 
     # TODO: Setup user foreign keys from request
     def get_form_kwargs(self):
-        kwargs = super(LeaveRequestCreate, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
@@ -59,14 +50,12 @@ class LeaveRequestDetail(LoginRequiredMixin, DetailView):
         return leave_request.request_by == self.request.user.manager
 
     def get_context_data(self, **kwargs):
-        context = super(LeaveRequestDetail, self).get_context_data(**kwargs)
-        value = self.get_object().status
+        context = super().get_context_data(**kwargs)
         context['form'] = ManagerUpdateLeaveRequestForm
-        context['status'] = LeaveRequestStatus.get_status_name(value)
         return context
 
     # TODO: Allow manager to review this request by POST submit value of status=accepted/rejected
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):  #pylint: disable=unused-argument
 
         # TODO: return HttpResponseForbidden if non manager tries to POST
         if self.request.user != self.get_object().manager:
@@ -93,7 +82,7 @@ class LeaveRequestDetail(LoginRequiredMixin, DetailView):
 class LeaveRequestUpdate(UserPassesTestMixin, UpdateView):
     template_name = "leave/LeaveRequest/form.html"
     model = LeaveRequest
-    form_class = UpdateLeaveRequestForm 
+    form_class = UpdateLeaveRequestForm
     raise_exception = True
     success_message = _('Leave Request Updated.')
 
@@ -103,7 +92,7 @@ class LeaveRequestUpdate(UserPassesTestMixin, UpdateView):
         return leave_request.request_by == self.request.user
 
     def get_form_kwargs(self):
-        kwargs = super(LeaveRequestUpdate, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 

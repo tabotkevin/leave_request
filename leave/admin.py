@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 # TODO: Show language and manager in list table columns
 
 @admin.register(User)
-class UserAdmin(UserAdmin):
+class UsersAdmin(UserAdmin):
     list_display = ('manager', 'language')
 
 

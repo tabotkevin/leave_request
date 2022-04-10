@@ -1,11 +1,10 @@
 from django import forms
-from django.utils.translation import gettext_lazy as _
 
 from .models import LeaveRequest
 
 
 class LeaveRequestForm(forms.ModelForm):
-    
+
     class Meta:
         model = LeaveRequest
         fields = ['start', 'end']
@@ -13,10 +12,10 @@ class LeaveRequestForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
-        super(LeaveRequestForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        leave_request = super(LeaveRequestForm, self).save(commit=False)
+        leave_request = super().save(commit=False)
         leave_request.request_by = self.user
         leave_request.manager = self.user.manager
         if commit:
@@ -33,7 +32,7 @@ class UpdateLeaveRequestForm(LeaveRequestForm):
 
 
 class ManagerUpdateLeaveRequestForm(forms.ModelForm):
-    
+
     class Meta:
         model = LeaveRequest
         fields = ['status']
